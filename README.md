@@ -15,7 +15,7 @@ This is example of using ChatGPT API with SpringBoot application. The applicatio
 
 Expected result: 
 
-You should get 200 OK response with something like this:
+In Postman tool you should get 200 OK response with something like this:
 
 AI (Artificial Intelligence) is a type of computer system that is able to perform tasks that would usually require some form of natural intelligence or human input in order to be completed. AI is a rapidly evolving field of research which involves both computer science and engineering. AI can be used for various purposes such as data analysis, pattern recognition, and decision making. It can be used to increase efficiency and accuracy of existing processes and can also be used to automate complex tasks.
 
