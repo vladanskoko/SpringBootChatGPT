@@ -4,14 +4,15 @@ This is example of using ChatGPT API with SpringBoot application. The applicatio
 
 # Usage
 
-1. Run Postman tool
-2. Add new POST request
-3. For URL type "http://localhost:8080/api/searchChatGPT"
-4. In Body section set raw/JSON and type for example:
+1. Start application in InteliJ IDEA
+2. Run Postman tool
+3. Add new POST request
+4. For URL type "http://localhost:8080/api/searchChatGPT"
+5. In Body section set raw/JSON and type for example:
    {
      "query": "What is AI?"
    }
-5. Click Send button
+6. Click Send button
 
 Expected result: 
 
