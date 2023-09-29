@@ -1,6 +1,6 @@
 # SpringBootChatGPT application
 
-This is example of using SpringBoot application with chatGPT API. It uses chatGPT API through REST API.
+This is example of using ChatGPT API with SpringBoot application. The application uses ChatGPT API through REST API.
 
 # Usage
 
