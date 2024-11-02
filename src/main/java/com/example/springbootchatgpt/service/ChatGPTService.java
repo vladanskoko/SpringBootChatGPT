@@ -3,6 +3,7 @@ package com.example.springbootchatgpt.service;
 import com.example.springbootchatgpt.dto.ChatGPTRequest;
 import com.example.springbootchatgpt.dto.ChatGPTResponse;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -10,6 +11,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +61,6 @@ public class ChatGPTService {
         } catch (Exception e) {
             return e.getMessage();
         }
+
     }
 }
