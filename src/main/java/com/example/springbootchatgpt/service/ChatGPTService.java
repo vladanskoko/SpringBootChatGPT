@@ -2,6 +2,7 @@ package com.example.springbootchatgpt.service;
 
 import com.example.springbootchatgpt.dto.ChatGPTRequest;
 import com.example.springbootchatgpt.dto.ChatGPTResponse;
+import com.example.springbootchatgpt.model.Message;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,8 @@ import org.apache.http.util.EntityUtils;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -35,32 +38,35 @@ public class ChatGPTService {
     private String key;
 
     public String processSearch(String query) {
+        Message message = new Message("user", query);
         ChatGPTRequest chatGPTRequest = ChatGPTRequest.builder()
                 .model(model)
                 .temperature(temperature)
-                .prompt(query)
+                .messages(List.of(message))
                 .maxTokens(maxTokens)
                 .build();
+
         HttpPost httpPost = new HttpPost(url);
         httpPost.addHeader("Content-Type", "application/json");
         httpPost.addHeader("Authorization", "Bearer " + key);
+
         Gson gson = new Gson();
         String body = gson.toJson(chatGPTRequest);
         log.info("body: " + body);
+
         try {
             final StringEntity entity = new StringEntity(body);
             httpPost.setEntity(entity);
-            try(CloseableHttpClient httpClient = HttpClients.custom().build();
-                CloseableHttpResponse response = httpClient.execute(httpPost)) {
+            try (CloseableHttpClient httpClient = HttpClients.custom().build();
+                 CloseableHttpResponse response = httpClient.execute(httpPost)) {
                 String responseBody = EntityUtils.toString(response.getEntity());
                 ChatGPTResponse chatGPTResponse = gson.fromJson(responseBody, ChatGPTResponse.class);
-                return chatGPTResponse.getChoices().get(0).getText();
+                return chatGPTResponse.getChoices().get(0).getMessage().getContent();
             } catch (Exception e) {
                 return e.getMessage();
             }
         } catch (Exception e) {
             return e.getMessage();
         }
-
     }
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatGPTChoice {
-    private Message message;
+public class Message {
+    private String role;
+    private String content;
 }
